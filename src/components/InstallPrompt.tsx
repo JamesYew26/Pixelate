@@ -1,17 +1,28 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, JSX } from 'react';
 import { Download, X } from 'lucide-react';
 
-export function InstallPrompt() {
-  const [deferredPrompt, setDeferredPrompt] = useState(null);
-  const [isVisible, setIsVisible] = useState(false);
+// Define the custom event interface since standard DOM typings don't include it yet
+interface BeforeInstallPromptEvent extends Event {
+  readonly platforms: string[];
+  readonly userChoice: Promise<{
+    outcome: 'accepted' | 'dismissed';
+    platform: string;
+  }>;
+  prompt(): Promise<void>;
+}
+
+export function InstallPrompt(): JSX.Element | null {
+  const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
+  const [isVisible, setIsVisible] = useState<boolean>(false);
 
   useEffect(() => {
-    const handleBeforeInstallPrompt = (e) => {
-      // 1. Prevent Chrome 67 and earlier from automatically showing the prompt
+    const handleBeforeInstallPrompt = (e: Event) => {
+      // 1. Prevent automatic browser prompt
       e.preventDefault();
-      
-      // 2. Stash the event so it can be triggered later
-      setDeferredPrompt(e);
+
+      // 2. Cast and store the event for later use
+      const promptEvent = e as BeforeInstallPromptEvent;
+      setDeferredPrompt(promptEvent);
 
       // 3. Check if user dismissed it in this session already
       const isDismissed = sessionStorage.getItem('pwa_prompt_dismissed');
@@ -28,11 +39,11 @@ export function InstallPrompt() {
     };
   }, []);
 
-  const handleInstallClick = async () => {
+  const handleInstallClick = async (): Promise<void> => {
     if (!deferredPrompt) return;
 
     // Show the browser's install prompt
-    deferredPrompt.prompt();
+    await deferredPrompt.prompt();
 
     // Wait for the user to respond to the prompt
     const { outcome } = await deferredPrompt.userChoice;
@@ -48,7 +59,7 @@ export function InstallPrompt() {
     setIsVisible(false);
   };
 
-  const handleDismiss = () => {
+  const handleDismiss = (): void => {
     setIsVisible(false);
     // Don't show again for this session
     sessionStorage.setItem('pwa_prompt_dismissed', 'true');

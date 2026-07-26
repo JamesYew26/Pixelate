@@ -1,3 +1,4 @@
+import { JSX } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 
@@ -5,13 +6,19 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
-const SLIDES = [
+interface Slide {
+  id: number;
+  title: string;
+  desc: string;
+}
+
+const SLIDES: Slide[] = [
   { id: 1, title: 'Seamless PWA Experience', desc: 'Works offline and installs like a native app.' },
   { id: 2, title: 'Ultra Fast Performance', desc: 'Powered by Vite and optimized utility CSS.' },
   { id: 3, title: 'Interactive React Components', desc: 'Built cleanly with modern React patterns.' },
 ];
 
-export function HeroSlider() {
+export function HeroSlider(): JSX.Element {
   return (
     <section className="w-full max-w-7xl mx-auto px-4 my-6">
       <Swiper
