@@ -1,13 +1,13 @@
-import { useState, JSX } from 'react';
+import { useState } from 'react';
 import reactLogo from './assets/react.svg';
 import viteLogo from './assets/vite.svg';
 import heroImg from './assets/hero.png';
 import './App.css';
-import { Navbar } from './components/Navbar';
-import { HeroSlider } from './components/HeroSlider';
-import { InstallPrompt } from './components/InstallPrompt';
+import { Navbar } from './components/Navbar.tsx';
+import { HeroSlider } from './components/HeroSlider.tsx';
+import { InstallPrompt } from './components/InstallPrompt.tsx';
 
-export default function App(): JSX.Element {
+export default function App() {
   const [count, setCount] = useState<number>(0);
 
   return (
@@ -77,11 +77,7 @@ export default function App(): JSX.Element {
           <ul>
             <li>
               <a href="https://github.com/vitejs/vite" target="_blank" rel="noreferrer">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
+                <svg className="button-icon" role="presentation" aria-hidden="true">
                   <use href="/icons.svg#github-icon"></use>
                 </svg>
                 GitHub
@@ -89,11 +85,7 @@ export default function App(): JSX.Element {
             </li>
             <li>
               <a href="https://chat.vite.dev/" target="_blank" rel="noreferrer">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
+                <svg className="button-icon" role="presentation" aria-hidden="true">
                   <use href="/icons.svg#discord-icon"></use>
                 </svg>
                 Discord
@@ -101,11 +93,7 @@ export default function App(): JSX.Element {
             </li>
             <li>
               <a href="https://x.com/vite_js" target="_blank" rel="noreferrer">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
+                <svg className="button-icon" role="presentation" aria-hidden="true">
                   <use href="/icons.svg#x-icon"></use>
                 </svg>
                 X.com
@@ -113,11 +101,7 @@ export default function App(): JSX.Element {
             </li>
             <li>
               <a href="https://bsky.app/profile/vite.dev" target="_blank" rel="noreferrer">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
+                <svg className="button-icon" role="presentation" aria-hidden="true">
                   <use href="/icons.svg#bluesky-icon"></use>
                 </svg>
                 Bluesky
