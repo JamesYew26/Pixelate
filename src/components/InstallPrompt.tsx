@@ -1,4 +1,5 @@
-import { useState, useEffect, JSX } from 'react';
+import type { JSX } from 'react';
+import { useState, useEffect } from 'react';
 import { Download, X } from 'lucide-react';
 
 // Define the custom event interface since standard DOM typings don't include it yet

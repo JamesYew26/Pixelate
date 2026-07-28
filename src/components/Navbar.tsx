@@ -1,5 +1,7 @@
-import { useState, useEffect, useRef, JSX } from 'react';
+import type { JSX } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { ChevronDown } from 'lucide-react';
+import WeGameLogo from '../assets/icon-logo-Dw016lLI.svg';
 
 export function Navbar(): JSX.Element {
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
@@ -32,7 +34,13 @@ export function Navbar(): JSX.Element {
   return (
     <header className={`sticky top-0 z-50 bg-white/80 backdrop-blur-md transition-shadow ${isScrolled ? 'shadow-md' : ''}`}>
       <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-        <span className="font-bold text-xl text-indigo-600">MyPWA</span>
+        <a href="#home" className="flex items-center gap-2 font-bold text-xl text-indigo-600 hover:opacity-90 transition-opacity">
+          <img 
+            src={WeGameLogo} 
+            alt="WeGame Logo" 
+            className="h-8 w-auto object-contain" 
+          />
+          </a>
 
         <nav className="flex items-center gap-6">
           <a href="#home" className="hover:text-indigo-600">Home</a>
