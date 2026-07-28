@@ -1,0 +1,201 @@
+/* Base Layout Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+}
+
+/* 1. Translucent Top Navigation Bar */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--nav-height);
+  background-color: var(--nav-bg);
+  backdrop-filter: var(--glass-backdrop);
+  -webkit-backdrop-filter: var(--glass-backdrop);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  z-index: 1000;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+/* Left Brand / Nav Menu */
+.nav-left, .nav-right {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 24px;
+}
+
+.nav-item {
+  position: relative;
+}
+
+.nav-link {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 8px 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: var(--transition);
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--text-hover);
+}
+
+/* Arrow indicator for dropdowns */
+.dropdown-arrow {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid var(--text-muted);
+  transition: var(--transition);
+}
+
+.nav-item:hover .dropdown-arrow {
+  transform: rotate(180deg);
+  border-top-color: var(--text-hover);
+}
+
+/* 2. Dropdown Menu */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 160px;
+  background: rgba(18, 20, 26, 0.95);
+  backdrop-filter: var(--glass-backdrop);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-dropdown);
+  padding: 8px 0;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: var(--transition);
+}
+
+/* Show dropdown on hover */
+.nav-item:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-item {
+  display: block;
+  padding: 10px 16px;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 14px;
+  transition: var(--transition);
+}
+
+.dropdown-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-hover);
+}
+
+/* 3. Search Bar & Action Buttons */
+.search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid transparent;
+  border-radius: 16px;
+  padding: 6px 16px;
+  color: #fff;
+  font-size: 13px;
+  outline: none;
+  transition: var(--transition);
+  width: 180px;
+}
+
+.search-input:focus {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.2);
+  width: 220px;
+}
+
+/* Pill Highlight Button (e.g., Download Mac) */
+.btn-pill {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  border: 1px solid var(--border-subtle);
+  padding: 8px 18px;
+  border-radius: var(--radius-btn);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  backdrop-filter: blur(4px);
+  transition: var(--transition);
+}
+
+.btn-pill:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+/* Accent Highlight (e.g., Special Event or Badge) */
+.badge-gold {
+  color: var(--accent-gold);
+  font-weight: bold;
+}
+
+/* Hero Section Container */
+.hero-slider {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Fullscreen hero header */
+  overflow: hidden;
+}
+
+/* Hero Background Slide Image */
+.slide-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Dark Overlay Gradient to enhance Text Contrast */
+.hero-slider::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg, 
+    rgba(10, 12, 16, 0.4) 0%, 
+    rgba(10, 12, 16, 0.8) 100%
+  );
+  pointer-events: none;
+}
