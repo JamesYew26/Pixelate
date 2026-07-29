@@ -32,28 +32,23 @@ export function Navbar(): JSX.Element {
   }, []);
 
   return (
-    <header className={`sticky top-0 z-50 bg-white/80 backdrop-blur-md transition-shadow ${isScrolled ? 'shadow-md' : ''}`}>
-      <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-        <a href="#home" className="flex items-center gap-2 font-bold text-xl text-indigo-600 hover:opacity-90 transition-opacity">
-          <img 
-            src={WeGameLogo} 
-            alt="WeGame Logo" 
-            className="h-8 w-auto object-contain" 
-          />
-          </a>
+    <header className={`sticky top-0 z-50 bg-gray-500/80 backdrop-blur-md transition-shadow ${isScrolled ? 'shadow-md' : ''}`}>
+      <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between text-white">
+  
+  <a href="#home" className="flex items-center gap-2 font-bold text-xl text-cyan-400 hover:opacity-90 transition-opacity">
+    <img src={WeGameLogo} alt="WeGame Logo" className="h-8 w-auto object-contain" />
+  </a>
 
-        <nav className="flex items-center gap-6">
-          <a href="#home" className="hover:text-indigo-600">Home</a>
-          
-          {/* Dropdown container */}
-          <div className="relative" ref={dropdownRef}>
-            <button 
-              onClick={() => setIsDropdownOpen((prev) => !prev)}
-              className="flex items-center gap-1 hover:text-indigo-600 font-medium cursor-pointer"
-              type="button"
-            >
-              Services <ChevronDown className={`w-4 h-4 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
-            </button>
+  <nav className="flex items-center gap-6">
+    <a href="#home" className="hover:text-cyan-400 transition-colors">Home</a>
+    
+    <div className="relative" ref={dropdownRef}>
+      <button 
+        onClick={() => setIsDropdownOpen((prev) => !prev)}
+        className="flex items-center gap-1 hover:text-cyan-400 font-medium cursor-pointer transition-colors"
+        type="button">
+        Services <ChevronDown className={`w-4 h-4 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
+      </button>
 
             {isDropdownOpen && (
               <div className="absolute top-full right-0 mt-2 w-48 bg-white border border-gray-100 rounded-xl shadow-lg py-2 flex flex-col z-50">
